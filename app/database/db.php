@@ -10,6 +10,7 @@ function tt($value){
 	print_r($value);
 	echo "</pre>";
 }
+
 //проверка выполнения запроса в БД
 function dbCheckError($query){
 	$errInfo = $query->errorInfo();

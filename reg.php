@@ -1,5 +1,4 @@
 <?php 
-include("path.php");
 
 include("app/controllers/users.php");
 
@@ -30,7 +29,7 @@ include("app/controllers/users.php");
 <!-- END HEADER -->
 <!-- FORM -->
 <div class="container reg_form">
-    <form class="row justify-content-center" method="post" action="reg.php">
+    <form class="row justify-content-center" method="post" action = "reg.php" >
         <h2>Форма регистрации</h2>
         <div class="mb-3 col-12 col-md-4">
             <p><?=$errMsg?></p>
