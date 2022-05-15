@@ -1,5 +1,6 @@
 <?php
 include("app/database/db.php");
+// include("path.php");
 
 
 $errMsg = '';
@@ -9,9 +10,9 @@ function userAuth($param){
 				$_SESSION['login'] = $param['username'];
 				$_SESSION['admin'] = $param['admin'];
 			if ($_SESSION['admin']) {
-				header('location:../admin/admin.php' );
+				header('location: ../../admin/posts/index.php' );
 			}else{
-				header('location:../index.php' );
+				// header('location:../index.php' );
 			}
 }
 
