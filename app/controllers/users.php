@@ -4,6 +4,17 @@ include("app/database/db.php");
 
 $errMsg = '';
 
+function userAuth($param){
+				$_SESSION['id'] = $param['id'];
+				$_SESSION['login'] = $param['username'];
+				$_SESSION['admin'] = $param['admin'];
+			if ($_SESSION['admin']) {
+				header('location:../admin/admin.php' );
+			}else{
+				header('location:../index.php' );
+			}
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['reg'])) {
     $userName = trim(htmlspecialchars($_POST["UserName"]));
@@ -25,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['reg'])) {
  	
  if ($exustence['email'] === $email ) {
  	$errMsg = "такой пользователь уже есть";
-
  }else{
  		$post = [
 		'admin' =>$admin,
@@ -33,17 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['reg'])) {
 		'email' =>$email,
 		'password' =>password_hash($password, PASSWORD_DEFAULT)
 	];
-		 $id = insert('users', $post); // приходит lastInsertId пользователя
+		$id = insert('users', $post); // приходит lastInsertId пользователя
 		$user = selectOne('users', ['id' => $id]); //'id' - поле Id в БД. Мы получаем данные последнего зарегестрированного пользователя 
 		
-		$_SESSION['id'] = $user['id'];
-		$_SESSION['login'] = $user['username'];
-		$_SESSION['admin'] = $user['admin'];
-		if ($_SESSION['admin']) {
-			 header('location:../admin/admin.php' );
-		}else{
-		 header('location:../index.php' );
-		}
+		userAuth($user);
 	
  }
  	
@@ -68,11 +71,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-log'])){
 	}else{
 		$exustence = selectone('users', ['email'=>$email]); // соответсвует ли $email который ввел пользователь с emial который есть в бд .
 		
-		if($exustence  && password_verify()){
-
+		if($exustence  && password_verify($password,  $exustence['password'])){
+				userAuth($exustence);
+		}else{
+			$errMsg = "Почта либо пароль введены не верно";
 		}
 	}
 	
+}else{
+	$email = ''; // разобратсья почему тут подставляется введеный эмайл.
 }
 
 

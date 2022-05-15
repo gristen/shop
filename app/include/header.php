@@ -40,7 +40,7 @@
                              <?php if ($_SESSION['admin']):?>
                             <li><a href="#">Админ панель</a> </li>
                         <?php endif;?>
-                            <li><a href="../controllers/logout.php">Выход</a> </li>
+                            <li><a href="../../app/controllers/logout.php">Выход</a> </li>
                         </ul>
 
                          <?php else: ?>
