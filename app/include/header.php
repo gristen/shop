@@ -38,7 +38,7 @@
                         </a>
                         <ul>
                              <?php if ($_SESSION['admin']):?>
-                            <li><a href="#">Админ панель</a> </li>
+                            <li><a href="../../admin/posts/index.php">Админ панель</a> </li>
                         <?php endif;?>
                             <li><a href="../../app/controllers/logout.php">Выход</a> </li>
                         </ul>

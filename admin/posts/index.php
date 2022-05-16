@@ -28,24 +28,32 @@ include('../../app/database/db.php');
 
 <?php include("../../app/include/header-admin.php"); ?>
 <div class="container">
-    <div class="row">
-        <div class="sidebar col-4">
-            <ul>
-                <li>
-                    <a href="">Записи</a>
-                </li>
-                <li>
-                    <a href="">Пользователи</a>
-                </li>
-                <li>
-                    <a href="">Категории</a>
-                </li>
-            </ul>
-        </div>
-        <div class="posts col-8">
-<div class="row">
+    <?php    include('../../app/include/sidebar.php'); ?>
+
+        <div class="posts col-8 offset-1">
+            <div class="button row">
+                <a href="./create.php" class="col-2 btn btn-success ">Добавить </a>
+                <a href="./index.php" class="col-2 offset-1 btn btn-warning ">Изменить </a>
+            </div>
+<div class="row title-table">
     <div class="id col-1 ">ID</div>
-    <div class="id col-1 ">title</div>
+    <div class="titile col-5 ">title</div>
+    <div class="avtor col-2 ">Автор</div>
+    <div class="red col-2 ">Редактировать</div>
+    <div class="del col-2 ">Удалить</div>
+</div>
+<div class="row post ">
+    <div class="id col-1 ">1</div>
+    <div class="titile col-5 ">кака-ято статья</div>
+    <div class="avtor col-2 ">Админ</div>
+    <div class="red col-2 "><a href="">edit</a>   </div>
+    <div class="del col-2 "><a href="">delete</a></div>
+</div><div class="row post ">
+    <div class="id col-1 ">2</div>
+    <div class="titile col-5 ">кака-ято статья</div>
+    <div class="avtor col-2 ">Админ</div>
+    <div class="red col-2 "><a href="">edit</a>   </div>
+    <div class="del col-2 "><a href="">delete</a></div>
 </div>
 
         </div>

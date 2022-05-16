@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../../app/database/db.php'); 
+include('../../app/controllers/topics.php'); 
 
 ?>
 
@@ -25,42 +25,40 @@ include('../../app/database/db.php');
     <title>admin</title>
 </head>
 <body>
+
 <?php include("../../app/include/header-admin.php"); ?>
 <div class="container">
 <?php    include('../../app/include/sidebar.php'); ?>
         <div class="posts col-8 offset-1">
             <div class="button row">
-                <a href="create.php" class="col-2 btn btn-success ">Создать пользователя</a>
-                <a href="index.php" class="col-2 offset-1 btn btn-warning ">Управление пользователями</a>
+                <a href="create.php" class="col-2 btn btn-success ">Создать категорию</a>
+                <a href="index.php" class="col-2 offset-1 btn btn-warning ">редактировать категории</a>
             </div>
 <div class="row title-table">
-    <h2>управление пользователями</h2>
-    <div class="id col-1 ">ID</div>
-    <div class="titile col-5 ">логин</div>
-    <div class="avtor col-2 ">роль</div>
-    <div class="red col-2 ">Редактировать</div>
-    <div class="del col-2 ">Удалить</div>
+    <h2>обновление категорию</h2>
 </div>
-<div class="row post ">
-    <div class="id col-1 ">1</div>
-    <div class="titile col-5 ">andre</div>
-    <div class="avtor col-2 ">Админ</div>
-    <div class="red col-2 "><a href="">edit</a>   </div>
-    <div class="del col-2 "><a href="">delete</a></div>
-</div><div class="row post ">
-    <div class="id col-1 ">2</div>
-    <div class="titile col-5 ">кака-ято статья</div>
-    <div class="avtor col-2 ">Админ</div>
-    <div class="red col-2 "><a href="">edit</a>   </div>
-    <div class="del col-2 "><a href="">delete</a></div>
+<div class="row add-post ">
+   <form action="../topics/edit.php" method="post" >
+   <div class="mb-3">
+   <p><?=$errMsg?></p>
+  <label for="formGroupExampleInput" class="form-label">Название статьи </label>
+  <input name="id"  type="hidden" value="<?=$id;?>">
+  <input name="name" type="text" value="<?=$name?>" class="form-control" id="formGroupExampleInput" placeholder="Имя категории">
+  
 </div>
-
+<div class="mb-3">
+<label for="content" class="form-label">Описание категории</label>
+  <textarea name="desc"  class="form-control" id="content" rows="3"><?=$desc?></textarea>
+</div>
+<button class="btn btn-primary mt-3" name="topic-edit" type="submit">обновить</button>
+   </form>
+</div>
         </div>
     </div>
 </div>
 
 
-
+<?php include("../../app/include/footer.php"); ?>
 <!-- // footer -->
 
 
