@@ -1,5 +1,6 @@
 <?php
 session_start();
+// include '../../path.php';
 require('connect.php');
 
 

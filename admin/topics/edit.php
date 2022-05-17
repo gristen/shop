@@ -1,6 +1,7 @@
 <?php
 session_start();
-include('../../app/controllers/topics.php'); 
+include '../../path.php';
+include '../../app/controllers/topics.php';
 
 ?>
 

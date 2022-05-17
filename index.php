@@ -1,7 +1,8 @@
 <?php
 
 include 'path.php';
-Include SITE_ROOT . '/app/controllers/topics.php';
+Include 'app/controllers/topics.php';
+
 
 
 ?>
