@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('../../app/database/db.php'); 
+include '../../path.php';
+include '../../app/controllers/posts.php';
 
 ?>
 
@@ -44,23 +44,23 @@ include('../../app/database/db.php');
    <form action="create.php" method="post" >
    <div class="mb-3">
   <label for="formGroupExampleInput" class="form-label">Название статьи </label>
-  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="title">
+  <input name="title" type="text" class="form-control" id="formGroupExampleInput" placeholder="title">
 </div>
 <div class="mb-3">
 <label for="editor" class="form-label">Содержимое записи</label>
-  <textarea id="editor" class="form-control"  rows="6"></textarea>
+  <textarea id="editor" name="content" class="form-control"  rows="6"></textarea>
 </div>
 <div class="input-group mb-3">
-  <input type="file" class="form-control" id="inputGroupFile02">
+  <input name="image" type="file" class="form-control" id="inputGroupFile02">
   <label class="input-group-text" for="inputGroupFile02">Upload</label>
 </div>
-<select class="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
+<select name="topic" class="form-select" aria-label="Default select example">
+  <option selected>Категория записи</option>
+  <?php foreach($topics as $key => $topic): ?>
+    <option value="<?=$topic['id']?>" ><?=$topic['name']?></option>
+    <?php endforeach; ?>
 </select>
-<button class="btn btn-primary mt-3" type="submit">Submit form</button>
+<button class="btn btn-primary mt-3" name="add_post" type="submit">Добавить запись</button>
    </form>
 </div>
         </div>

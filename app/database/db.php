@@ -92,7 +92,6 @@ function selectAll($table, $params = []){
 }
 
 
-
 function insert($table, $params){
 	global $dbh;
 	$i=0; 
@@ -112,6 +111,7 @@ function insert($table, $params){
 	
 	$store_user = $dbh->prepare("INSERT INTO $table ($coll) VALUES ($mask)");
 	$store_user->execute($params);
+	
 
 	return $dbh->lastInsertId();
 }

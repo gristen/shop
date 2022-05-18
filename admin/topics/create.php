@@ -1,7 +1,7 @@
 <?php
-session_start();
-include '../../path.php';
-include '../../app/controllers/topics.php';
+
+include '../../path.php'; // Подлючаем пути который потом подключатся в ...
+include '../../app/controllers/topics.php'; // Обработчик 
 
 ?>
 

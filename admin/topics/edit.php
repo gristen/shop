@@ -1,7 +1,7 @@
 <?php
 session_start();
-include '../../path.php';
-include '../../app/controllers/topics.php';
+include '../../path.php'; // Подлючаем пути который потом подключатся в Контролере topics.php
+include '../../app/controllers/topics.php'; // Обработчик 
 
 ?>
 
@@ -43,7 +43,7 @@ include '../../app/controllers/topics.php';
    <div class="mb-3">
    <p><?=$errMsg?></p>
   <label for="formGroupExampleInput" class="form-label">Название статьи </label>
-  <input name="id"  type="hidden" value="<?=$id;?>">
+  <input name="id"  type="hidden" value="<?=$id;?>">  
   <input name="name" type="text" value="<?=$name?>" class="form-control" id="formGroupExampleInput" placeholder="Имя категории">
   
 </div>
