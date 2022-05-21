@@ -1,6 +1,7 @@
 <?php
+session_start();
 include '../../path.php';
-include '../../app/controllers/posts.php';
+include '../../app/controllers/users.php';
 
 ?>
 
@@ -28,53 +29,54 @@ include '../../app/controllers/posts.php';
 
 <?php include("../../app/include/header-admin.php"); ?>
 <div class="container">
-    <div class="row">
-    <?php    include('../../app/include/sidebar.php'); ?>
+<?php    include('../../app/include/sidebar.php'); ?>
         <div class="posts col-8 offset-1">
             <div class="button row">
-                <a href="create.php" class="col-2 btn btn-success ">add post</a>
-                <a href="index.php" class="col-2 offset-1 btn btn-warning ">manage posts</a>
+                <a href="create.php" class="col-2 btn btn-success ">Создать пользователя</a>
+                <a href="index.php" class="col-2 offset-1 btn btn-warning ">Управление пользователями</a>
             </div>
 <div class="row title-table">
-    <h2>Добавление записи</h2>
-   
-   
+    <h2>Создание пользователя</h2>
 </div>
-<div class="row add-post ">
-   <form action="create.php" method="post" enctype="multipart/form-data" >
-   <div class="mb-3">
-  <label for="formGroupExampleInput" class="form-label">Название статьи </label>
-  <input name="title" type="text" class="form-control" id="formGroupExampleInput" placeholder="title">
-</div>
-<div class="mb-3">
-<label for="editor" class="form-label">Содержимое записи</label>
-  <textarea id="editor" name="content" class="form-control"  rows="6"></textarea>
-</div>
-<div class="input-group mb-3">
-  <input name="image" type="file" class="form-control" id="inputGroupFile02">
-  <label class="input-group-text" for="inputGroupFile02">Upload</label>
-</div>
-<select name="topic" class="form-select" aria-label="Default select example">
-  <option selected>Категория записи</option>
-  <?php foreach($topics as $key => $topic): ?>
-    <option value="<?=$topic['id']?>" ><?=$topic['name']?></option>
-    <?php endforeach; ?>
-</select>
-<div class="form-check">
-  <input name="publish" class="form-check-input" type="checkbox" value="1" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Опобликовать сразу?
-  </label>
-</div>
-<button class="btn btn-primary mt-3" name="add_post" type="submit">Добавить запись</button>
-   </form>
-</div>
+
+<form action="edit.php" method="post" >
+  <?=$errMsg;?>
+   <div class="">
+   <input name="id"  type="hidden" value="<?=$id;?>">  
+            <label for="formGroupExampleInput" class="form-label">логин</label>
+            <input type="text" class="form-control" value="<?=$username;?>" name="UserName" id="formGroupExampleInput" placeholder="введите ваш логин...">
         </div>
-    </div>
+    
+        <div class="">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" readonly value="<?=$email?>" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="введите ваш email...">
+        
+        </div>
+        
+        <div class="">
+            <label for="exampleInputPassword1" class="form-label">Сбросить пароль</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="введите ваш пароль...">
+        </div>
+     
+        <div class="">
+            <label for="exampleInputPassword2" class="form-label">Повторите пароль</label>
+            <input type="password" name="password_confirmation" class="form-control" id="exampleInputPassword2" placeholder="повторите ваш пароль...">
+        </div>
+        
+        <div class="form-check">
+   
+  <input name="admin" value="1" class="form-check-input" type="checkbox"  id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    admin
+  </label>
+
+    <input name="publish" class="form-check-input" type="checkbox"   id="flexCheckDefault" checked>
+
+
 </div>
 
-
-<?php include("../../app/include/footer.php"); ?>
+<button name="update_user" class="btn btn-primary mt-3" type="submit">Обновить</button>
+</form>
 <!-- // footer -->
 
 
@@ -82,12 +84,11 @@ include '../../app/controllers/posts.php';
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+
 <!-- Option 2: Separate Popper and Bootstrap JS -->
 <!--
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 -->
-<script src="../../assets/js/scripts.js" ></script>
 </body>
 </html>

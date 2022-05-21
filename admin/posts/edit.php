@@ -32,41 +32,51 @@ include '../../app/controllers/posts.php';
     <?php    include('../../app/include/sidebar.php'); ?>
         <div class="posts col-8 offset-1">
             <div class="button row">
-                <a href="create.php" class="col-2 btn btn-success ">add post</a>
-                <a href="index.php" class="col-2 offset-1 btn btn-warning ">manage posts</a>
+                <!-- <a href="create.php" class="col-2 btn btn-success ">add post</a>
+                <a href="index.php" class="col-2 offset-1 btn btn-warning ">manage posts</a> -->
             </div>
 <div class="row title-table">
-    <h2>Добавление записи</h2>
+    <h2>редактирование записи</h2>
    
    
 </div>
 <div class="row add-post ">
-   <form action="create.php" method="post" enctype="multipart/form-data" >
+   <form action="edit.php" method="post" enctype="multipart/form-data" >
+   <input name="id"  type="hidden" value="<?=$id;?>">  
    <div class="mb-3">
   <label for="formGroupExampleInput" class="form-label">Название статьи </label>
-  <input name="title" type="text" class="form-control" id="formGroupExampleInput" placeholder="title">
+  <input name="title" value="<?=$title?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="title">
 </div>
 <div class="mb-3">
 <label for="editor" class="form-label">Содержимое записи</label>
-  <textarea id="editor" name="content" class="form-control"  rows="6"></textarea>
+  <textarea id="editor"  name="content" class="form-control"  rows="6"><?=$content?></textarea>
 </div>
 <div class="input-group mb-3">
   <input name="image" type="file" class="form-control" id="inputGroupFile02">
   <label class="input-group-text" for="inputGroupFile02">Upload</label>
 </div>
 <select name="topic" class="form-select" aria-label="Default select example">
-  <option selected>Категория записи</option>
+ 
   <?php foreach($topics as $key => $topic): ?>
     <option value="<?=$topic['id']?>" ><?=$topic['name']?></option>
     <?php endforeach; ?>
 </select>
+
+
 <div class="form-check">
-  <input name="publish" class="form-check-input" type="checkbox" value="1" id="flexCheckDefault">
+    <?php if(empty($status) && $status == 0) : ?>
+  <input name="publish" class="form-check-input" type="checkbox"  id="flexCheckDefault">
   <label class="form-check-label" for="flexCheckDefault">
     Опобликовать сразу?
   </label>
+  <?php else:  ?>
+    <input name="publish" class="form-check-input" type="checkbox" value="1"  id="flexCheckDefault" checked>
+  <label class="form-check-label" for="flexCheckDefault">
+    Опобликовать сразу
+  </label>
+  <?php endif; ?>
 </div>
-<button class="btn btn-primary mt-3" name="add_post" type="submit">Добавить запись</button>
+<button class="btn btn-primary mt-3" name="edit_post" type="submit">Сохранить запись</button>
    </form>
 </div>
         </div>

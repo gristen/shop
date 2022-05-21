@@ -1,6 +1,7 @@
 <?php
 session_start();
-include('../../app/database/db.php'); 
+include '../../path.php';
+include '../../app/controllers/users.php';
 
 ?>
 
@@ -38,8 +39,8 @@ include('../../app/database/db.php');
     <h2>Создание пользователя</h2>
 </div>
 
-
-   </form>
+<form action="create.php" method="post" >
+  
    <div class="">
             <label for="formGroupExampleInput" class="form-label">Ваш логин</label>
             <input type="text" class="form-control" value="<?=$userName?>" name="UserName" id="formGroupExampleInput" placeholder="введите ваш логин...">
@@ -61,13 +62,20 @@ include('../../app/database/db.php');
             <input type="password" name="password_confirmation" class="form-control" id="exampleInputPassword2" placeholder="повторите ваш пароль...">
         </div>
         
+        <div class="form-check">
+   
+  <input name="admin" value="1" class="form-check-input" type="checkbox"  id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    admin
+  </label>
 
-<select class="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">user</option>
-  <option value="2">admin</option>
-</select>
-<button class="btn btn-primary mt-3" type="submit">Submit form</button>
+    <input name="publish" class="form-check-input" type="checkbox"   id="flexCheckDefault" checked>
+
+
+</div>
+
+<button name="create_user" class="btn btn-primary mt-3" type="submit">Submit form</button>
+</form>
 <!-- // footer -->
 
 

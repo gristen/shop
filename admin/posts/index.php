@@ -1,7 +1,7 @@
 <?php
 session_start();
-include('../../app/database/db.php'); 
-
+include('../../path.php'); 
+include '../../app/controllers/posts.php';
 ?>
 
 <!doctype html>
@@ -39,22 +39,28 @@ include('../../app/database/db.php');
     <div class="id col-1 ">ID</div>
     <div class="titile col-5 ">title</div>
     <div class="avtor col-2 ">Автор</div>
+    
     <div class="red col-2 ">Редактировать</div>
-    <div class="del col-2 ">Удалить</div>
+  
 </div>
+<?php foreach($postsAdm as $key => $post): ?>
+
 <div class="row post ">
-    <div class="id col-1 ">1</div>
-    <div class="titile col-5 ">кака-ято статья</div>
-    <div class="avtor col-2 ">Админ</div>
-    <div class="red col-2 "><a href="">edit</a>   </div>
-    <div class="del col-2 "><a href="">delete</a></div>
-</div><div class="row post ">
-    <div class="id col-1 ">2</div>
-    <div class="titile col-5 ">кака-ято статья</div>
-    <div class="avtor col-2 ">Админ</div>
-    <div class="red col-2 "><a href="">edit</a>   </div>
-    <div class="del col-2 "><a href="">delete</a></div>
+    <div class="id col-1 "><?= $key+1 ?></div>
+    <div class="titile col-3 "><?= $post['titile'] ?></div>
+    <div class="avtor col-2 "><?= $post['username'] ?></div>
+    <div class="red col-2 "><a href="edit.php?id=<?=$post['id'];?>">edit</a>   </div>
+    <div class="del col-2 "><a href="edit.php?dele_id=<?=$post['id'];?>">delete</a></div>
+    <?php if($post['status']):?>
+    <div class="stat col-1 "><a href="edit.php?publish=0&pub_id=<?=$post['id'];?>">черновик</a></div>
+    <?php else: ?>
+        <div class="stat col-1 "><a href="edit.php?publish=1&pub_id=<?=$post['id'];?>">Опубликовать</a></div>
+    <?php endif; ?>
 </div>
+<?php endforeach; ?>
+   
+
+
 
         </div>
     </div>

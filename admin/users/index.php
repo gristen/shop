@@ -1,6 +1,8 @@
 <?php
 session_start();
-include('../../app/database/db.php'); 
+include '../../path.php';
+// include('../../app/database/db.php'); 
+include '../../app/controllers/users.php';
 
 
 ?>
@@ -34,27 +36,32 @@ include('../../app/database/db.php');
                 <a href="create.php" class="col-2 btn btn-success ">Создать пользователя</a>
                 <a href="index.php" class="col-2 offset-1 btn btn-warning ">Управление пользователями</a>
             </div>
+      
 <div class="row title-table">
-    <h2>управление пользователями</h2>
+    <h2> пользователями</h2>
     <div class="id col-1 ">ID</div>
-    <div class="titile col-5 ">логин</div>
+    <div class="titile col-2 ">логин</div>
+    <div class="titile col-3 ">mail</div>
     <div class="avtor col-2 ">роль</div>
     <div class="red col-2 ">Редактировать</div>
     <div class="del col-2 ">Удалить</div>
 </div>
+<?php foreach($users as $key => $user): ?>
 <div class="row post ">
-    <div class="id col-1 ">1</div>
-    <div class="titile col-5 ">andre</div>
-    <div class="avtor col-2 ">Админ</div>
-    <div class="red col-2 "><a href="">edit</a>   </div>
-    <div class="del col-2 "><a href="">delete</a></div>
-</div><div class="row post ">
-    <div class="id col-1 ">2</div>
-    <div class="titile col-5 ">кака-ято статья</div>
-    <div class="avtor col-2 ">Админ</div>
-    <div class="red col-2 "><a href="">edit</a>   </div>
-    <div class="del col-2 "><a href="">delete</a></div>
+    <div class="id col-1 "><?=$key+1?></div>
+    <div class="titile col-2 "><?=$user['username']?></div>
+    <div class="titile col-3 "><?=$user['email']?></div>
+    <?php if($user['admin']==1): ?>
+    <div class="avtor col-2 ">Администратор</div>
+    <?php else: ?>
+        <div class="avtor col-2 ">Пользователь</div>
+        <?php endif;?>
+    <div class="red col-2 "><a href="edit.php?edit_user=<?=$user['id']?>">edit</a>   </div>
+   
+    <div class="del col-2 "><a href="index.php?del_us_id=<?=$user['id']?>">delete</a></div>
 </div>
+<?php endforeach;?>
+
 
         </div>
     </div>

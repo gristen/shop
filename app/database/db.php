@@ -143,6 +143,15 @@ function delete($table, $id){
 
 }
 
+// Выборка записей с автором в админку
 
+	function selectAllFromPostsWithUsers($table1 ,$table2){
+		global $dbh;
+		
+
+		$query = $dbh->prepare("SELECT $table1.id , $table1.titile,$table1.img,$table1.content,$table1.status,$table1.id_topic,$table2.username FROM $table1 JOIN $table2 ON $table1.id_user = $table2.id"); //Возьми мне с БД table 1 и table 2 ид , ид тайл имг контет статус ид топика и с бд 2 возьми юзернейм который равен id & username
+		$query->execute();
+		return $date = $query->fetchAll(PDO::FETCH_ASSOC);
+	}
 
 ?>
