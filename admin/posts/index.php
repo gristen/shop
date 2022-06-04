@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include('../../path.php'); 
 include '../../app/controllers/posts.php';
 ?>
@@ -47,7 +47,7 @@ include '../../app/controllers/posts.php';
 
 <div class="row post ">
     <div class="id col-1 "><?= $key+1 ?></div>
-    <div class="titile col-3 "><?= $post['titile'] ?></div>
+    <div class="titile col-3 "> <?= mb_substr($post['titile'],0,18, 'UTF-8').'...'; ?></div>
     <div class="avtor col-2 "><?= $post['username'] ?></div>
     <div class="red col-2 "><a href="edit.php?id=<?=$post['id'];?>">edit</a>   </div>
     <div class="del col-2 "><a href="edit.php?dele_id=<?=$post['id'];?>">delete</a></div>

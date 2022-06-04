@@ -11,7 +11,7 @@ if(!$_SESSION){
 
 $errMsg = '';
 
-// $topics = selectAll('categories');
+$topics = selectAll('categories');
 // $posts = selectAll('posts');
 $postsAdm = selectAllFromPostsWithUsers('posts','users');
 

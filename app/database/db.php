@@ -154,4 +154,35 @@ function delete($table, $id){
 		return $date = $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+
+
+	function selectAllFromPostsWithUsersOnindex($table1 ,$table2)
+	{
+		global $dbh;
+		
+		$query = $dbh->prepare("SELECT $table1.*,$table2.username FROM $table1 JOIN $table2 ON $table1.id_user = $table2.id WHERE $table1.status=1 "); // Выбери мне ВСЕ с таблицы 1 и юзернейм с таблицы 2 где iduser = id с таблицы 2 И статус = 1.
+		$query->execute();
+		return $date = $query->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	
+	function selectTopTopicsFromPostsOnindex($table1)
+	{
+		global $dbh;
+		
+		$query = $dbh->prepare("SELECT * FROM $table1 WHERE id_topic = 19 "); // Вывод статей равных ид топику 18ти (горячие новости с такой же идшкой)
+		$query->execute();
+		return $date = $query->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+
+	function selectoneFromPostsWithUsersOnSingle($table1 ,$table2,$id)
+	{
+		global $dbh;
+		
+		$query = $dbh->prepare("SELECT $table1.*,$table2.username FROM $table1 JOIN $table2 ON $table1.id_user = $table2.id WHERE $table1.id = $id"); 
+		$query->execute();
+		return $date = $query->fetch(PDO::FETCH_ASSOC);
+	}
+
 ?>

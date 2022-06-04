@@ -4,6 +4,10 @@ include 'path.php';
 Include 'app/controllers/topics.php';
 
 
+$da = selectAllFromPostsWithUsersOnindex('posts','users');
+// $da = selectAll('posts', ['status' => 1]);
+$top_topic = selectTopTopicsFromPostsOnindex('posts');
+
 
 ?>
 
@@ -20,27 +24,22 @@ Include 'app/controllers/topics.php';
         <h2 class="slider-title">Топ публикации</h2>
     </div>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  
         <div class="carousel-inner">
+        <?php foreach($top_topic as $key => $topic): ?>
+            <?php if($key == 0): ?>
             <div class="carousel-item active">
-                <img src="images/image_1.png" class="d-block w-100" alt="...">
+                <?php else: ?>
+                    <div class="carousel-item">
+                        <?php endif ;?>
+                <img src="<?='assets/images/posts/' .$topic['img']?>" class="d-block w-100" alt="...">
                 <div class="carousel-caption-hack carousel-caption d-none d-md-block">
-                    <h5><a href=""> First slide label</a></h5>
+                    <h5>   <a href="<?= 'single.php?post='. $topic['id'] ?>"><?= substr($topic['titile'],0,50).'...'; ?></a></h5>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="images/image_2.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption-hack carousel-caption d-none d-md-block">
-                    <h5><a href=""> First slide label</a></h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <!--<img src="images/image_3.png" class="d-block w-100" alt="...">-->
-                <img src="images/2.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption-hack carousel-caption d-none d-md-block">
-                    <h5><a href=""> First slide label</a></h5>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
+     
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -59,103 +58,29 @@ Include 'app/controllers/topics.php';
         <!-- Main Content -->
         <div class="main-content col-md-9 col-12">
             <h2>Последние публикации</h2>
-
+            <?php foreach($da as $post ): ?>
+              
             <div class="post row">
                 <div class="img col-12 col-md-4">
-                    <img src="images/image_small.png" alt="" class="img-thumbnail">
+                    <img src="<?='assets/images/posts/' .$post['img']?>" alt="" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
-                        <a href="#">Прикольная статья на тему динамеческого сайта...</a>
+                        <a href="<?= 'single.php?post='. $post['id'] ?>"><?= substr($post['titile'],0,120).'...'; ?></a>
                     </h3>
-                    <i class="far fa-user"> Имя Автора</i>
-                    <i class="far fa-calendar"> Mar 11, 2019</i>
+                    <i class="far fa-user"> <?=$post['username']; ?></i>
+                    <i class="far fa-calendar"> <?=$post['created_date']; ?></i>
                     <p class="preview-text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Exercitationem optio possimus a inventore maxime laborum.
+                   
+                    <?= mb_substr($post['content'],0,150, 'UTF-8').'...'; ?>
                     </p>
                 </div>
             </div>
-            <div class="post row">
-                <div class="img col-12 col-md-4">
-                    <img src="images/image_small.png" alt="" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="#">Прикольная статья на тему динамеческого сайта...</a>
-                    </h3>
-                    <i class="far fa-user"> Имя Автора</i>
-                    <i class="far fa-calendar"> Mar 11, 2019</i>
-                    <p class="preview-text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Exercitationem optio possimus a inventore maxime laborum.
-                    </p>
-                </div>
-            </div>
-            <div class="post row">
-                <div class="img col-12 col-md-4">
-                    <img src="images/image_small.png" alt="" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="#">Прикольная статья на тему динамеческого сайта...</a>
-                    </h3>
-                    <i class="far fa-user"> Имя Автора</i>
-                    <i class="far fa-calendar"> Mar 11, 2019</i>
-                    <p class="preview-text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Exercitationem optio possimus a inventore maxime laborum.
-                    </p>
-                </div>
-            </div>
-            <div class="post row">
-                <div class="img col-12 col-md-4">
-                    <img src="images/image_small.png" alt="" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="#">Прикольная статья на тему динамеческого сайта...</a>
-                    </h3>
-                    <i class="far fa-user"> Имя Автора</i>
-                    <i class="far fa-calendar"> Mar 11, 2019</i>
-                    <p class="preview-text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Exercitationem optio possimus a inventore maxime laborum.
-                    </p>
-                </div>
-            </div>
-            <div class="post row">
-                <div class="img col-12 col-md-4">
-                    <img src="images/image_small.png" alt="" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="#">Прикольная статья на тему динамеческого сайта...</a>
-                    </h3>
-                    <i class="far fa-user"> Имя Автора</i>
-                    <i class="far fa-calendar"> Mar 11, 2019</i>
-                    <p class="preview-text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Exercitationem optio possimus a inventore maxime laborum.
-                    </p>
-                </div>
-            </div>
-            <div class="post row">
-                <div class="img col-12 col-md-4">
-                    <img src="images/image_small.png" alt="" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="#">Прикольная статья на тему динамеческого сайта...</a>
-                    </h3>
-                    <i class="far fa-user"> Имя Автора</i>
-                    <i class="far fa-calendar"> Mar 11, 2019</i>
-                    <p class="preview-text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Exercitationem optio possimus a inventore maxime laborum.
-                    </p>
-                </div>
-            </div>
+            <?php endforeach;?>
+           
+           
+       
+          
 
         </div>
         <!-- sidebar Content -->
